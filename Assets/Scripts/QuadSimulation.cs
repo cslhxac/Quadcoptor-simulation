@@ -60,18 +60,17 @@ public class QuadSimulation : MonoBehaviour {
 
 	void FixedUpdate(){
 		Vector3 blade_angular_momentum_accum = new Vector3(0,0,0);
+		//Vector3 blade_force = /*rigidbody.rotation * */blade_rigidbodies[0].angularVelocity * (blade_rigidbodies[0].angularVelocity.magnitude * blade_force_gain * blade_controls [0].direction);
+
         for (int i = 0;i < blade_rigidbodies.GetLength(0);++i)
         {
-			Vector3 blade_force = /*rigidbody.rotation * */blade_rigidbodies [i].angularVelocity * (blade_rigidbodies [i].angularVelocity.magnitude * blade_force_gain * blade_controls [i].direction);
+			Vector3 blade_force = /*rigidbody.rotation */ blade_rigidbodies[i].angularVelocity * (blade_rigidbodies[i].angularVelocity.magnitude * blade_force_gain * blade_controls [i].direction);
 			rigidbody.AddForceAtPosition(blade_force,blade_rigidbodies[i].position);
 			//Conservation of angular momentum
 			blade_angular_momentum_accum += blade_controls[i].angular_momentum_change;
-			//Vector3 blade_angular_momentum_old = new Vector3(blade_angular_momentum[i].x,blade_angular_momentum[i].y,blade_angular_momentum[i].z);
-			//blade_angular_momentum[i] = ComputeMomentOfInertia(blade_rigidbodies[i].inertiaTensorRotation,blade_rigidbodies[i].inertiaTensor,blade_rigidbodies[i].angularVelocity);
-			//blade_angular_momentum_accum += blade_angular_momentum[i] - blade_angular_momentum_old;
         }
 		//rigidbody.angularVelocity = Vector3.up;
-		rigidbody.angularVelocity += ComputeAngularVelocity(rigidbody.inertiaTensorRotation,rigidbody.inertiaTensor,blade_angular_momentum_accum);
+		//rigidbody.angularVelocity += ComputeAngularVelocity(rigidbody.inertiaTensorRotation,rigidbody.inertiaTensor,blade_angular_momentum_accum);
 		//Debug.Log(blade_angular_momentum_accum);
 		//Debug.Log(ComputeAngularVelocity(rigidbody.inertiaTensorRotation,rigidbody.inertiaTensor,blade_angular_momentum_accum));
 	}

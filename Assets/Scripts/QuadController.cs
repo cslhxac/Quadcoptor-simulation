@@ -54,6 +54,7 @@ public class QuadController : MonoBehaviour {
 		float err_position = height_command - rigidbody.position.y;
 		err_position_acc += err_position;
 		float err_velocity = velocity_command - rigidbody.velocity.y;
+		//Debug.Log (err_velocity * height_gain_d);
 		float force_star = err_position * height_gain_p + err_velocity * height_gain_d + err_position_acc * height_gain_i;
 		for(int i = 0; i < n_blades; ++i) {
 			blade_controls[i].velocity_star = Mathf.Sign(force_star) * Mathf.Sqrt(Mathf.Abs(force_star) / n_blades / blade_force_gain);
