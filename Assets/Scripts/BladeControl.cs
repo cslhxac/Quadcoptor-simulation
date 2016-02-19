@@ -19,7 +19,7 @@ public class BladeControl : MonoBehaviour {
     void Start () {
         rigidbody = GetComponent<Rigidbody>();
 		rigidbody.maxAngularVelocity = 1000;
-		angular_momentum_change = Vector3(0, 0, 0);
+		angular_momentum_change = new Vector3(0, 0, 0);
     }
 
 	// Update is called once per frame
